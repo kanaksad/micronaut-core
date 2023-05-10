@@ -3,7 +3,10 @@ import io.micronaut.build.internal.japicmp.RemovedPackages
 
 plugins {
     id "io.micronaut.build.internal.convention-core-library"
+    id 'org.checkerframework' version '0.6.23'
 }
+
+apply plugin: 'org.checkerframework'
 
 micronautBuild {
     core {
@@ -11,10 +14,22 @@ micronautBuild {
     }
 }
 
+checkerFramework {
+    checkers = [
+            'edu.ucr.cs.riple.taint.ucrtainting.UCRTaintingChecker',
+    ]
+    extraJavacArgs = [
+            '-Awarns',
+            '-AstubDebug'
+    ]
+}
+
 dependencies {
     compileOnly libs.managed.jakarta.annotation.api
     compileOnly libs.graal
     compileOnly libs.managed.kotlin.stdlib
+    checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }
 
 spotless {
