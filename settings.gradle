@@ -6,10 +6,12 @@ pluginManagement {
         id "org.jetbrains.kotlin.kapt" version getProperty("kotlinVersion")
         id "org.jetbrains.kotlin.plugin.allopen" version getProperty("kotlinVersion")
         id "org.jetbrains.kotlin.plugin.jpa" version getProperty("kotlinVersion")
+        id 'org.checkerframework' version '0.6.23'
     }
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
     }
 }
 

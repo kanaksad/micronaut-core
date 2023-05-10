@@ -2,6 +2,11 @@ plugins {
     id "io.micronaut.build.internal.convention-core-library"
 }
 
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 dependencies {
     annotationProcessor project(":inject-java")
     annotationProcessor project(":graal")

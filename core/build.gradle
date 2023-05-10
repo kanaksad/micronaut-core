@@ -6,7 +6,10 @@ plugins {
     id 'org.checkerframework' version '0.6.23'
 }
 
-apply plugin: 'org.checkerframework'
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
 
 micronautBuild {
     core {
@@ -20,7 +23,9 @@ checkerFramework {
     ]
     extraJavacArgs = [
             '-Awarns',
-            '-AstubDebug'
+            '-AstubDebug',
+            "-AannotatedPackages=foo.bar",
+            "-AenableCustomCheck=true",
     ]
 }
 

@@ -3,6 +3,12 @@ import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.
 plugins {
     id("io.micronaut.build.internal.convention-library")
 }
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 dependencies {
     annotationProcessor(projects.injectJava)
     annotationProcessor(platform(libs.test.boms.micronaut.validation))

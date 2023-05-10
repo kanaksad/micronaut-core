@@ -4,6 +4,10 @@ plugins {
 
 import java.time.Duration
 
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
 
 dependencies {
 	annotationProcessor project(":inject-java")

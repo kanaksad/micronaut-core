@@ -1,6 +1,12 @@
 plugins {
     id("io.micronaut.build.internal.convention-library")
 }
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 dependencies {
     annotationProcessor(project(":inject-java"))
     api(libs.junit.jupiter)

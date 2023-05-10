@@ -4,6 +4,11 @@ plugins {
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 micronautBuild {
     core {
         usesMicronautTestJunit()
