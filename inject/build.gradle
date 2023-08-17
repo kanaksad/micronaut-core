@@ -11,7 +11,14 @@ repositories {
 
 checkerFramework {
     checkers = [
-            'org.checkerframework.checker.tainting.TaintingChecker',
+            'edu.ucr.cs.riple.taint.ucrtainting.UCRTaintingChecker',
+    ]
+    extraJavacArgs = [
+            "-AannotatedPackages=io.micronaut",
+            "-AenableLibraryCheck",
+            "-AenableSideEffect",
+            "-nowarn",
+            "-AsuppressWarnings"
     ]
     skipCheckerFramework = true
 }
@@ -35,8 +42,10 @@ dependencies {
     compileOnly libs.managed.kotlin.stdlib.jdk8
 
     checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
-    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
+    compileOnly 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
 
+    annotationProcessor 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    compileOnly 'edu.ucr.cs.riple.taint:ucrtainting-checker-qual:0.1'
 
     testImplementation project(":context")
     testImplementation project(":inject-groovy")
