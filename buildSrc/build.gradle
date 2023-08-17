@@ -1,8 +1,19 @@
 plugins {
     id 'groovy-gradle-plugin'
+    id 'org.checkerframework' version '0.6.30'
+}
+
+apply plugin: 'org.checkerframework'
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     gradlePluginPortal()
 }
@@ -14,4 +25,7 @@ dependencies {
     implementation "org.tomlj:tomlj:1.1.0"
     implementation "me.champeau.gradle:japicmp-gradle-plugin:0.4.2"
     implementation "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.24"
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
+
 }

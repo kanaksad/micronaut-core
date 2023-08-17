@@ -1,5 +1,19 @@
 plugins {
     id "io.micronaut.build.internal.convention-library"
+    id 'org.checkerframework' version '0.6.30'
+}
+
+apply plugin: 'org.checkerframework'
+
+repositories {
+    mavenLocal()
+}
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 dependencies {
@@ -13,6 +27,8 @@ dependencies {
         exclude group:'com.google.guava', module:'guava'
     }
     implementation project(":core-reactive")
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
 
     compileOnly libs.managed.kotlin.stdlib.jdk8
 }

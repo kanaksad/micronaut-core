@@ -1,9 +1,20 @@
 plugins {
     id "io.micronaut.build.internal.convention-library"
+    id 'org.checkerframework' version '0.6.30'
 }
 
+apply plugin: 'org.checkerframework'
+
 repositories {
+    mavenLocal()
     mavenCentral()
+}
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 dependencies {
@@ -17,6 +28,9 @@ dependencies {
     compileOnly(libs.micronaut.runtime.groovy)
     implementation libs.managed.reactor
     annotationProcessor project(":inject-java")
+
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
 
     testImplementation libs.managed.netty.codec.http
 }

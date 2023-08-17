@@ -1,5 +1,19 @@
 plugins {
     id "io.micronaut.build.internal.convention-library"
+    id 'org.checkerframework' version '0.6.30'
+}
+
+apply plugin: 'org.checkerframework'
+
+repositories {
+    mavenLocal()
+}
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 import java.time.Duration
@@ -11,6 +25,8 @@ dependencies {
     api project(":http-client-core")
     api project(":inject")
     api project(':aop')
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
 
     implementation libs.managed.reactor
 

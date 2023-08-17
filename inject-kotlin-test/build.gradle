@@ -1,6 +1,20 @@
 plugins {
     id "io.micronaut.build.internal.convention-library"
     id "org.jetbrains.kotlin.jvm"
+    id 'org.checkerframework' version '0.6.30'
+}
+
+apply plugin: 'org.checkerframework'
+
+repositories {
+    mavenLocal()
+}
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 dependencies {
@@ -17,6 +31,8 @@ dependencies {
     implementation(libs.managed.kotlin.compiler.embeddable)
     implementation "com.squareup.okio:okio:3.3.0"
     implementation "io.github.classgraph:classgraph:4.8.149"
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
     testImplementation libs.javax.persistence
     testImplementation project(":runtime")
     api libs.blaze.persistence.core

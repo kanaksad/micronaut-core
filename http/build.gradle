@@ -1,6 +1,20 @@
 plugins {
     id "io.micronaut.build.internal.convention-library"
     id "org.jetbrains.kotlin.jvm"
+    id 'org.checkerframework' version '0.6.30'
+}
+
+apply plugin: 'org.checkerframework'
+
+repositories {
+    mavenLocal()
+}
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 dependencies {
@@ -21,6 +35,10 @@ dependencies {
     testImplementation project(":inject")
     testImplementation project(":runtime")
     testImplementation(libs.logback.classic)
+
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
+
 }
 
 tasks.named("compileKotlin") {

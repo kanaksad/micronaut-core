@@ -21,6 +21,7 @@ micronautBuild {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {

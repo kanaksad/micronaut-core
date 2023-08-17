@@ -1,6 +1,20 @@
 plugins {
     id "io.micronaut.build.internal.convention-library"
     id 'io.micronaut.build.internal.functional-test'
+    id 'org.checkerframework' version '0.6.30'
+}
+
+apply plugin: 'org.checkerframework'
+
+repositories {
+    mavenLocal()
+}
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    skipCheckerFramework = true
 }
 
 micronautBuild {
@@ -12,6 +26,10 @@ micronautBuild {
 dependencies {
     api project(":core-processor")
     api libs.managed.groovy
+
+    checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    implementation 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
+
     testImplementation project(":context")
     testImplementation libs.javax.inject
     testImplementation libs.spotbugs
