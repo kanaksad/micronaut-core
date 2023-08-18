@@ -14,7 +14,14 @@ repositories {
 
 checkerFramework {
     checkers = [
-            'org.checkerframework.checker.tainting.TaintingChecker',
+            'edu.ucr.cs.riple.taint.ucrtainting.UCRTaintingChecker',
+    ]
+    extraJavacArgs = [
+            "-AannotatedPackages=io.micronaut",
+            "-AenableLibraryCheck",
+            "-AenableSideEffect",
+            "-nowarn",
+            "-AsuppressWarnings"
     ]
     skipCheckerFramework = true
 }

@@ -35,9 +35,11 @@ dependencies {
     compileOnly libs.managed.kotlin.stdlib
 
     checkerFramework 'org.checkerframework:checker:3.37.1-SNAPSHOT'
+    compileOnly 'org.checkerframework:checker:3.37.1-SNAPSHOT'
     compileOnly 'org.checkerframework:checker-qual:3.37.1-SNAPSHOT'
 
     annotationProcessor 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    compileOnly 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
     compileOnly 'edu.ucr.cs.riple.taint:ucrtainting-checker-qual:0.1'
 
 
