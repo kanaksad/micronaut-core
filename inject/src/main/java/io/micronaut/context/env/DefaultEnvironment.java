@@ -15,6 +15,7 @@
  */
 package io.micronaut.context.env;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import io.micronaut.context.ApplicationContextConfiguration;
 import io.micronaut.context.exceptions.ConfigurationException;
 import io.micronaut.core.annotation.NonNull;
@@ -945,7 +946,7 @@ public class DefaultEnvironment extends PropertySourcePropertyResolver implement
         return readFile(ORACLE_CLOUD_ASSET_TAG_FILE).toLowerCase().contains("oraclecloud");
     }
 
-    private static Optional<Process> runWindowsCmd(String cmd) {
+    private static Optional<Process> runWindowsCmd(@RUntainted String cmd) {
         try {
             ProcessBuilder builder = new ProcessBuilder();
             builder.command("cmd.exe", "/c", cmd);
