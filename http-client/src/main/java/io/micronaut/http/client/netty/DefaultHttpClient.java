@@ -15,6 +15,7 @@
  */
 package io.micronaut.http.client.netty;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import io.micronaut.buffer.netty.NettyByteBufferFactory;
 import io.micronaut.core.annotation.AnnotationMetadata;
 import io.micronaut.core.annotation.AnnotationMetadataResolver;
@@ -1469,7 +1470,7 @@ public class DefaultHttpClient implements
             io.micronaut.http.HttpRequest<I> finalRequest,
             Argument<O> bodyType,
             Argument<E> errorType,
-            FluxSink<? super HttpResponse<O>> emitter,
+            FluxSink<? super @RUntainted HttpResponse<O>> emitter,
             boolean secure,
             ConnectionManager.PoolHandle poolHandle) throws HttpPostRequestEncoder.ErrorDataEncoderException {
         URI requestURI = finalRequest.getUri();
