@@ -15,6 +15,7 @@
  */
 package io.micronaut.core.io;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import io.micronaut.core.annotation.Internal;
 import io.micronaut.core.util.ArgumentUtils;
 
@@ -32,13 +33,13 @@ import java.nio.file.Files;
 @Internal
 class FileReadable implements Readable {
 
-    private final File file;
+    private final @RUntainted File file;
 
     /**
      * Default constructor.
      * @param file The file
      */
-    FileReadable(@NonNull File file) {
+    FileReadable(@NonNull @RUntainted File file) {
         ArgumentUtils.requireNonNull("file", file);
         this.file = file;
     }
